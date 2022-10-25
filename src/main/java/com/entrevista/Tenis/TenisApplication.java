@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.entrevista.Service.JugadorService;
+import com.entrevista.Tenis.Service.JugadorService;
 import com.entrevista.Tenis.entity.Jugador;
 import com.entrevista.Tenis.entity.Partido;
 

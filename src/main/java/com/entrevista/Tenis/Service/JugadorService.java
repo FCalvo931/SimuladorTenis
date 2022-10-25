@@ -1,4 +1,4 @@
-package com.entrevista.Service;
+package com.entrevista.Tenis.Service;
 
 import java.util.ArrayList;
 import java.util.List;
