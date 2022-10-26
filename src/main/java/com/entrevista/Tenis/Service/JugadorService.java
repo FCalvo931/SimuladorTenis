@@ -51,7 +51,12 @@ public class JugadorService {
 						partido.jugador2.punto = 0;
 
 						partido.jugador1.game[setEnJuego] = partido.jugador1.game[setEnJuego] + 1;
-						partido.saque = 2; // Al ganar el Game se pasa el saque al Jugador 2
+						
+						if (partido.saque == 1) {	// Al ganar el Game se pasa el saque al Jugador correspondiente
+							partido.saque = 2;
+						}else{
+							partido.saque = 1;
+						}
 
 						if (partido.jugador1.game[setEnJuego] >= 6 && partido.jugador2.game[setEnJuego] <= (partido.jugador1.game[setEnJuego] - 2)) { // Se verifica si gano Set con el game ganado
 							partido.jugador1.set = partido.jugador1.set + 1;
@@ -85,7 +90,12 @@ public class JugadorService {
 						partido.jugador1.punto = 0;
 
 						partido.jugador2.game[setEnJuego] = partido.jugador2.game[setEnJuego] + 1;
-						partido.saque = 1; // Al ganar el Game se pasa el saque al Jugador 1
+						
+						if (partido.saque == 1) {// Al ganar el Game se pasa el saque al Jugador correspondiente
+							partido.saque = 2;
+						}else{
+							partido.saque = 1;
+						}
 
 						if (partido.jugador2.game[setEnJuego] >= 6 && partido.jugador1.game[setEnJuego] <= (partido.jugador2.game[setEnJuego] - 2)) { // Se verifica si gano Set con el game ganado
 							partido.jugador2.set = partido.jugador2.set + 1;
@@ -113,7 +123,7 @@ public class JugadorService {
 	
 	
 	
-	private void mostrarPartido(Partido partido) {
+	private void mostrarPartido(Partido partido) {  // Mostrar partido
 		System.out.println(" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
 		System.out.println(partido.nombreTorneo + "\t\tPunto     \tGames(tiebreak)          \tTotal Set");
 		if(partido.saque == 1){
@@ -150,10 +160,10 @@ public class JugadorService {
 		int aux = 0;
 		do {
 			
-			if (partido.saque == 1) {
+			if (partido.saque == 1) { // El saque lo tiene jugador 1
 				if (rand.nextInt(1, 100) <= partido.jugador1.probabilidadGanarPunto) {
-					partido.jugador1.punto = partido.jugador1.punto + 1;
-					if (i == 1) {
+					partido.jugador1.punto = partido.jugador1.punto + 1; // 
+					if (i == 1) { // Se verifica si el saque cambia de Jugador o no
 						partido.saque = 2;
 						i=0;
 					}
@@ -161,9 +171,9 @@ public class JugadorService {
 						i++;
 					}
 					
-					if (partido.jugador1.punto >= 7 && partido.jugador2.punto <= (partido.jugador1.punto - 2)) {
+					if (partido.jugador1.punto >= 7 && partido.jugador2.punto <= (partido.jugador1.punto - 2)) { // Se verifica que con el punto ganado el Jugador haya o no ganado el set
 						partido.jugador1.set = partido.jugador1.set + 1;
-						aux = 1;
+						aux = 1; // Con este auxiar salgo de la funcion ya que el SET se termino
 					}
 				} else {
 					partido.jugador2.punto = partido.jugador2.punto + 1;
@@ -177,7 +187,7 @@ public class JugadorService {
 					
 					if (partido.jugador2.punto >= 7 && partido.jugador1.punto <= (partido.jugador2.punto - 2)) {
 						partido.jugador2.set = partido.jugador2.set + 1;
-						aux = 1;
+						aux = 1; // Con este auxiar salgo de la funcion ya que el SET se termino
 					}
 				}
 				
@@ -196,7 +206,7 @@ public class JugadorService {
 					
 					if (partido.jugador1.punto >= 7 && partido.jugador2.punto <= (partido.jugador1.punto - 2)) {
 						partido.jugador1.set = partido.jugador1.set + 1;
-						aux = 1;
+						aux = 1; // Con este auxiar salgo de la funcion ya que el SET se termino
 					}
 				} else {
 					partido.jugador2.punto = partido.jugador2.punto + 1;
@@ -209,11 +219,11 @@ public class JugadorService {
 					}
 					if (partido.jugador2.punto >= 7 && partido.jugador1.punto <= (partido.jugador2.punto - 2)) {
 						partido.jugador2.set = partido.jugador2.set + 1;
-						aux = 1;
+						aux = 1; // Con este auxiar salgo de la funcion ya que el SET se termino
 					}
 				}
 			}
-			mostrarPartido(partido);
+			mostrarPartido(partido); // Muestro el partido
 		} while (aux == 0);
 		return partido;
 	}
