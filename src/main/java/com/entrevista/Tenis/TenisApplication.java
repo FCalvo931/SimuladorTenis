@@ -13,7 +13,7 @@ import com.entrevista.Tenis.entity.Partido;
 
 @SpringBootApplication
 public class TenisApplication {
-
+	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		SpringApplication.run(TenisApplication.class, args);
@@ -61,13 +61,13 @@ public class TenisApplication {
 					System.out.println("¿Desea repetir el partido?");
 					repetir = br.readLine();
 				} while (repetir.equals("si"));
-
+				salir = 1;
 			} catch (Exception e) {
 				System.out.println("Dato ingresado no valido, intente nuevamente"); // Error salta cuando el usuario quiere cargar un char[] cuando se le pide un numero
 			}
 
 		} while (salir == 0);
-
+		System.exit(0);
 	}
 
 }

@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+
+import com.entrevista.Tenis.Util.Util;
 import com.entrevista.Tenis.entity.Jugador;
 import com.entrevista.Tenis.entity.Partido;
 
+
 public class JugadorService {
-
+	
+	public Util u = new Util(); 
+	
 	public List<Jugador> cargarJugadores(String nombre, int probabilidad1, String nombre2) {
-
 		Jugador jugador1 = new Jugador(nombre, probabilidad1);
 		int probabilidad2 = 100 - probabilidad1;
 		Jugador jugador2 = new Jugador(nombre2, probabilidad2);
@@ -116,42 +120,8 @@ public class JugadorService {
 					}
 				}
 				
-				mostrarPartido(partido);
+				u.mostrarPartido(partido);
 		} while ((partido.jugador1.set < i) && (partido.jugador2.set < i)); // El partido continua hasta q haya un ganador
-	}
-
-	
-	
-	
-	private void mostrarPartido(Partido partido) {  // Mostrar partido
-		System.out.println(" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
-		System.out.println(partido.nombreTorneo + "\t\tPunto     \tGames(tiebreak)          \tTotal Set");
-		if(partido.saque == 1){
-			System.out.print(partido.jugador1.nombre + "\t\t " + partido.jugador1.punto + " \t- " );
-			for (int i = 0; i < partido.jugador1.game.length; i++) {
-				System.out.print(partido.jugador1.game[i] + "(" + partido.jugador1.tieBreak[i] + ") - ");
-			}
-			System.out.println("\t" +partido.jugador1.set);
-			
-			System.out.print(partido.jugador2.nombre + "\t\t " + partido.jugador2.punto + " \t- " );
-			for (int i = 0; i < partido.jugador2.game.length; i++) {
-				System.out.print(partido.jugador2.game[i] + "(" + partido.jugador2.tieBreak[i] + ") - ");
-			}
-			System.out.println("\t" +partido.jugador2.set);
-		}else {
-			System.out.print(partido.jugador2.nombre + "\t\t " + partido.jugador2.punto + " \t- " );
-			for (int i = 0; i < partido.jugador2.game.length; i++) {
-				System.out.print(partido.jugador2.game[i] + "(" + partido.jugador2.tieBreak[i] + ") - ");
-			}
-			System.out.println("\t" +partido.jugador2.set);
-			
-			System.out.print(partido.jugador1.nombre + "\t\t " + partido.jugador1.punto + " \t- " );
-			for (int i = 0; i < partido.jugador1.game.length; i++) {
-				System.out.print(partido.jugador1.game[i] + "(" + partido.jugador1.tieBreak[i] + ") - ");
-			}
-			System.out.println("\t" +partido.jugador1.set);
-		}
-		System.out.println(" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ");
 	}
 
 	private Partido tiebreak(Partido partido) {
@@ -223,7 +193,7 @@ public class JugadorService {
 					}
 				}
 			}
-			mostrarPartido(partido); // Muestro el partido
+			u.mostrarPartido(partido); // Muestro el partido
 		} while (aux == 0);
 		return partido;
 	}
